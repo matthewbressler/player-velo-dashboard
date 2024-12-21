@@ -47,6 +47,35 @@ form button:hover {
     background-color: #d44141;
 }
 
+/* Center the div */
+.center-link {
+    text-align: center; 
+    margin-top: 25px; 
+    margin-bottom: 25px;
+}
+
+/* Style the link to match the rest of the site */
+.center-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif; 
+    font-size: 1.2em; 
+    color: #007bff; 
+    text-decoration: none; /* Remove underline */
+    border-radius: 8px;
+    font-weight: bold; /* Make text bold if needed */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for the link */
+.center-link a:hover {
+    color: #0056b3; 
+    text-decoration: underline; /* Optional underline on hover */
+}
+
+
+
 /* Error message */
 #error-message {
     color: red;
