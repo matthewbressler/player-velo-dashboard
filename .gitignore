@@ -1,0 +1,36 @@
+# Ignore the credentials folder (which contains sensitive info like the JSON file)
+credentials/
+
+# Ignore PNG files in the static folder
+/static/*.png
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment folder
+venv/
+env/
+
+# Ignore environment variable files 
+.env
+
+# Ignore database files 
+*.db
+*.sqlite3
+
+# Ignore log files
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Flask instance files 
+instance/
+
+# Ignore any other configuration files
+.idea/
+.vscode/
+*.swp

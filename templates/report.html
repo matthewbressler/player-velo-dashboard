@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Report - {{ player_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
+</head>
+<body>
+    <h1>Welcome to {{ player_name }}'s Velo Report</h1>
+
+    <!-- Player Profile -->
+    <div class="player-profile">
+        <!-- Player Profile -->
+        <h2>Player Profile</h2>
+        <p><strong>Name:</strong> {{ player_profile.player_name }}</p>
+        <p><strong>Age:</strong> {{ player_profile.age }}</p>
+        <p><strong>Email:</strong> {{ player_profile.email }}</p>
+        <p><strong>All-Time Max Velocity:</strong> {{ player_profile.all_time_max_velocity }} mph</p>
+    </div>
+
+    <!-- Display Session Metrics -->
+    <h2>Session Summary</h2>
+    <div class="table-wrapper">
+        <table class="desktop-table">
+            <thead>
+                <tr>
+                    <th>Session Date</th>
+                    <th>Raw Velocities 100%</th>
+                    <th>Max Velocity 100%</th>
+                    <th>Raw Velocities 90%</th>
+                    <th>Max Velocity 90%</th>
+                    <th>Raw Velocities 80%</th>
+                    <th>Max Velocity 80%</th>
+                    <th>Problems</th>
+                    <th>Arm Feel</th>
+                    <th>Personal Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in session_metrics['session_metrics'] %}
+                    <tr>
+                        <td data-label="Session Date">{{ session.date }}</td>
+                        <td data-label="Raw Velocities 100%">{{ session.velocities_100 | join(', ') }}</td>
+                        <td data-label="Max Velocity 100%">{{ session.max_velocity_100 }}</td>
+                        <td data-label="Raw Velocities 90%">{{ session.velocities_90 | join(', ') }}</td>
+                        <td data-label="Max Velocity 90%">{{ session.max_velocity_90 }}</td>
+                        <td data-label="Raw Velocities 80%">{{ session.velocities_80 | join(', ') }}</td>  
+                        <td data-label="Max Velocity 80%">{{ session.max_velocity_80 }}</td>
+                        <td data-label="Problems">{{ session.problems }}</td>
+                        <td data-label="Arm Feel">{{ session.arm_feel }}</td>
+                        <td data-label="Personal Note">{{ session.personal_note }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Mobile Accordion -->
+        <div class="accordion">
+            {% for session in session_metrics['session_metrics'] %}
+            <div class="accordion-item">
+                <input type="checkbox" id="session-{{ loop.index }}" class="accordion-toggle-checkbox">
+                <label for="session-{{ loop.index }}" class="accordion-header">
+                    <span>Session Date: {{ session.date }}</span>
+                </label>
+                <div class="accordion-content">
+                    <table>
+                        <tr>
+                            <td><strong>Raw Velocities 100%:</strong></td>
+                            <td>{{ session.velocities_100 | join(', ') }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Max Velocity 100%:</strong></td>
+                            <td>{{ session.max_velocity_100 }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Raw Velocities 90%:</strong></td>
+                            <td>{{ session.velocities_90 }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Max Velocity 90%:</strong></td>
+                            <td>{{ session.max_velocity_90 }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Raw Velocities 80%:</strong></td>
+                            <td>{{ session.velocities_80 }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Max Velocity 80%:</strong></td>
+                            <td>{{ session.max_velocity_80 }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Problems:</strong></td>
+                            <td>{{ session.problems }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Arm Feel:</strong></td>
+                            <td>{{ session.arm_feel }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Personal Note:</strong></td>
+                            <td>{{ session.personal_note }}</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+    <!-- Display Session Performance Heatmap -->
+    <h2>Session Performance Visualizations</h2>
+
+    <!-- Heatmap -->
+    <img src="{{ url_for('static', filename='heatmap_' + player_name.replace(' ', '_') + '.png') }}" alt="Session Performance Heatmap">
+
+    <!-- Max Velocity Line Graph -->
+<img src="{{ url_for('static', filename='line_graph_' + player_name.replace(' ', '_') + '.png') }}" alt="Max Velocity Line Graph">
+<div class="scatter-plot-section">
+    <div>{{ scatter_plot_html|safe }}</div>
+</div>
+
+</body>
+</html>

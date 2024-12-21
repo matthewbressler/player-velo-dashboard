@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Velo Player Dashboard</title>
+    
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <h1>Welcome to the MVP Velo Player Dashboard</h1>
+    <!-- Form to submit the selected player -->
+    <form action="/report" method="get" onsubmit="return validateForm();">
+        <label for="player">Select Your Name:</label>
+        <select id="player" name="player_name">
+            <option value="" disabled selected>Click Here</option>
+            {% for player, player_value in player_name_options %}
+                <!-- Display names with spaces, but submit with hyphens in the value -->
+                <option value="{{ player_value }}">{{ player }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">View Report</button>
+    </form>
+
+    <!-- Error message -->
+    <div id="error-message">Please select a player before submitting.</div>
+
+    <script>
+        function validateForm() {
+            const player = document.getElementById("player").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (!player) {
+                // Show error message if no player is selected
+                errorMessage.style.display = "block";
+                return false;
+            }
+
+            // Hide error message if a player is selected
+            errorMessage.style.display = "none";
+            return true;
+        }
+    </script> 
+    
+    <h1 class="leaderboard-title">Velocity Leaderboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player Name</th>
+                <th>Max Velocity (mph)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player_name, max_velocity in leaderboard %}
+                <tr>
+                    <td>{{ loop.index }}</td>  <!-- loop.index automatically gives the current index (1-based) -->
+                    <td>{{ player_name }}</td>
+                    <td>{{ max_velocity }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>        
+    </table>
+</body>
+</html>

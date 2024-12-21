@@ -1,0 +1,209 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header style */
+h1, h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 30px;
+}
+
+/* Player Profile Section */
+.player-profile {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.player-profile h2{
+    margin-top: 5px;
+}
+
+.player-profile p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+/* General Table Wrapper */
+.table-wrapper {
+    width: 100%;
+    margin: 20px auto;
+}
+
+/* Session Summary Table */
+table {
+    width: 95%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: fixed; /* Ensures all columns take equal or predefined space */
+    word-wrap: break-word; /* Wrap text within cells */
+}
+
+table th, table td {
+    font-size: 0.9em;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    
+}
+
+table th {
+    background-color: #e13a3a;
+    color: white;
+    font-size: 1.2em;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+/* Visualization Images */
+img {
+    display: block;
+    margin: 20px auto;
+    max-width: 90%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* General Table Wrapper */
+.table-wrapper {
+    width: 100%;
+    margin: 20px auto;
+}
+
+/* Desktop Table Styles */
+.desktop-table {
+    width: 95%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.desktop-table th, .desktop-table td {
+    padding: 12px 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.desktop-table th {
+    background-color: #e13a3a;
+    color: white;
+    font-size: 1.2em;
+}
+
+.desktop-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.desktop-table tr:hover {
+    background-color: #ddd;
+}
+
+/* Mobile Accordion Styles */
+.accordion {
+    display: none; /* Hide by default */
+}
+
+.accordion-item {
+    margin-bottom: 15px;
+    border: 1px solid #e13a3a;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.accordion-header {
+    display: block;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #e13a3a;
+    cursor: pointer;
+}
+
+.accordion-header:hover {
+    background-color: #d44141;
+}
+
+.accordion-toggle-checkbox {
+    display: none;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+.accordion-toggle-checkbox:checked + .accordion-header + .accordion-content {
+    max-height: 500px;
+    padding: 15px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .desktop-table {
+        display: none; /* Hide desktop table */
+    }
+
+    .accordion {
+        display: block; /* Show accordion */
+    }
+}
+
+@media (min-width: 769px) {
+    .accordion {
+        display: none; /* Hide accordion on desktop */
+    }
+}
+
+
+
+/* Scatter Plot Section */
+.scatter-plot-section {
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+
