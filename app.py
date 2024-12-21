@@ -5,6 +5,7 @@ from datetime import datetime
 import re
 import os
 import google.auth
+import googleapiclient.discovery
 import matplotlib
 matplotlib.use('Agg')  # Use the Agg backend for non-GUI plotting
 import plotly.express as px
@@ -13,10 +14,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
+from dotenv import load_dotenv
 
-
-# Path to the credentials JSON file
-SERVICE_ACCOUNT_FILE = 'credentials/player-velo-dashboard-3934aa36cdba.json'
+load_dotenv()
 
 # Scopes required by the API
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
@@ -38,18 +38,31 @@ app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # Cache timeout in seconds (adjust as
 cache = Cache(app)
 
 
+# Function to get Google credentials from environment variables
+def get_google_creds():
+    credentials_info = {
+        "type": "service_account",
+        "project_id": os.getenv("GOOGLE_PROJECT_ID"),
+        "private_key_id": os.getenv("GOOGLE_PRIVATE_KEY_ID"),
+        "private_key": os.getenv("GOOGLE_PRIVATE_KEY"),
+        "client_email": os.getenv("GOOGLE_CLIENT_EMAIL"),
+        "client_id": os.getenv("GOOGLE_CLIENT_ID"),
+        "auth_uri": os.getenv("GOOGLE_AUTH_URI"),
+        "token_uri": os.getenv("GOOGLE_TOKEN_URI"),
+        "auth_provider_x509_cert_url": os.getenv("GOOGLE_AUTH_PROVIDER_X509_CERT_URL"),
+        "client_x509_cert_url": os.getenv("GOOGLE_CLIENT_X509_CERT_URL"),
+    }
+
+    creds = service_account.Credentials.from_service_account_info(credentials_info, scopes=SCOPES)
+    return creds
 
 
 # Create Sheets API Client
 # Cache the Google Sheets data
 @cache.cached(timeout=600, key_prefix='sheet_data')
 def get_google_sheet_data():
-    # Load credentials from the service account file
-    creds = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-    
-    # Build the Sheets API client
-    service = build('sheets', 'v4', credentials=creds)
+    creds = get_google_creds()  # Get the credentials using the function
+    service = googleapiclient.discovery.build('sheets', 'v4', credentials=creds)
     
     # Fetch the data from the sheet
     sheet = service.spreadsheets()
