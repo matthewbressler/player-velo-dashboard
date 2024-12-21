@@ -7,10 +7,18 @@ body {
     color: #333;
 }
 
+header {
+    background-color: #e13a3a;
+    padding: 10px 20px;
+    border-bottom: 2px solid #e0e0e0;
+    
+    align-items: center;
+}
+
 /* Header style */
 h1 {
     text-align: center;
-    color: #333;
+    color: #000000;
     margin-top: 20px;
 }
 

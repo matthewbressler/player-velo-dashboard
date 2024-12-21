@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
 </head>
 <body>
-    <h1>Welcome to {{ player_name }}'s Velo Report</h1>
+
+    <!-- Header Section -->
+    <header>
+        <div class="home-btn">
+            <a href="{{ url_for('home') }}" class="btn btn-primary">Home</a>
+        </div>
+        <div class="h1-container">
+            <h1>Welcome to {{ player_name }}'s Velo Report</h1>
+        </div>
+    </header>
 
     <!-- Player Profile -->
     <div class="player-profile">

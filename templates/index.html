@@ -10,14 +10,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
-    <h1>Welcome to the MVP Velo Player Dashboard</h1>
+    <header>
+        <h1>Welcome to the MVP Velo Player Dashboard</h1>
+    </header>
+    
 
     <div class="center-link">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdumHqJ5qjdD6N-QgMBiLzdm-IHFnC3ZQOYXcdOrnaZJF3k3Q/viewform" target="_blank" rel="noopener noreferrer">
             Link to Weekly Form
         </a>
     </div>
-    
+
     <!-- Form to submit the selected player -->
     <form action="/report" method="get" onsubmit="return validateForm();">
         <label for="player">Select Your Name:</label>
